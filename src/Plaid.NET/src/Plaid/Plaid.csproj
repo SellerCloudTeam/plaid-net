@@ -4,7 +4,7 @@
     <TargetFramework>netstandard1.1</TargetFramework>
     <AssemblyName>Acklann.Plaid</AssemblyName>
     <RootNamespace>Acklann.Plaid</RootNamespace>
-    <AssemblyVersion>0.0.9</AssemblyVersion>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <PackageVersion>0.0.9</PackageVersion>
     <Authors>Ackara</Authors>
     <Company>Ackara</Company>
@@ -19,6 +19,7 @@
     <PackageIconUrl>https://github.com/Ackara/Plaid.NET/raw/master/art/icon.png</PackageIconUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SellerCloud.Acklann.Plaid</PackageId>
+    <Version>1.0.0.1</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard2.0\Acklann.Plaid.xml</DocumentationFile>

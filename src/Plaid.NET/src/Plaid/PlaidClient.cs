@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -105,6 +106,57 @@ namespace Acklann.Plaid
         }
 
         /* Institutions */
+
+        /// <summary>
+        /// Retrieves the institutions that match the query parameters.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>Task&lt;Institution.GetAllResponse&gt;.</returns>
+        public async Task<Entity.Institution[]> FetchAllInstitutionsAsync(Institution.GetAllRequest request)
+        {
+            int offset = 0;
+            int count = 500;
+
+            Institution.GetRequest lastRequest;
+            Institution.GetResponse lastResponse;
+
+            var institutions = new List<Entity.Institution>();
+
+            do
+            {
+                lastRequest = new Institution.GetRequest
+                {
+                    ClientId = request.ClientId,
+                    Secret = request.Secret,
+
+                    Offset = offset,
+                    Count = count,
+
+                    Options = request.Options
+                };
+
+                lastResponse = await this.FetchInstitutionsAsync(lastRequest);
+                offset += count;
+
+                if (lastResponse.IsSuccessStatusCode)
+                {
+                    institutions.AddRange(lastResponse.Institutions);
+                }
+
+            } while (lastResponse.IsSuccessStatusCode && lastResponse.Institutions?.Length > 0);
+
+            return institutions.ToArray();
+        }
+
+        /// <summary>
+        /// Retrieves the institutions that match the query parameters.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>Task&lt;Institution.GetResponse&gt;.</returns>
+        public Task<Institution.GetResponse> FetchInstitutionsAsync(Institution.GetRequest request)
+        {
+            return PostAsync<Institution.GetResponse>("institutions/get", request);
+        }
 
         /// <summary>
         /// Retrieves the institutions that match the query parameters.

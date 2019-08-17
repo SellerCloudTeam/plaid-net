@@ -50,6 +50,27 @@ namespace Acklann.Plaid.Entity
         public string[] Products { get; set; }
 
         /// <summary>
+        /// Gets or sets the logo.
+        /// </summary>
+        /// <value>The logo.</value>
+        [JsonProperty("logo")]
+        public byte[] Logo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the primary color.
+        /// </summary>
+        /// <value>The primary color.</value>
+        [JsonProperty("primary_color")]
+        public string PrimaryCode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the url.
+        /// </summary>
+        /// <value>The url.</value>
+        [JsonProperty("url")]
+        public string Url { get; set; }
+
+        /// <summary>
         /// Represents an <see cref="Institution"/> login credentials.
         /// </summary>
         public struct Credential

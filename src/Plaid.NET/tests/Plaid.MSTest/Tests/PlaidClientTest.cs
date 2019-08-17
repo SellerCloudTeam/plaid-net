@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
+using System.Linq;
 
 namespace Acklann.Plaid.MSTest.Tests
 {
@@ -62,6 +63,50 @@ namespace Acklann.Plaid.MSTest.Tests
             result.IsSuccessStatusCode.ShouldBeTrue();
             result.RequestId.ShouldNotBeNullOrEmpty();
             result.Categories.Length.ShouldBeGreaterThan(0);
+        }
+
+        [TestMethod]
+        public void FetchAllInstitutionsAsync_should_retrieve_a_list_of_all_banks()
+        {
+            // Arrange
+            var sut = new PlaidClient(Environment.Sandbox);
+
+            // Act
+            var request = new Institution.GetAllRequest()
+            {
+                Options = new Institution.GetOptions { IncludeOptionalMetadata = true }
+            }.UseDefaults();
+
+            var institutions = sut.FetchAllInstitutionsAsync(request).Result;
+
+            // Assert
+            institutions.Length.ShouldBeGreaterThan(500);
+            institutions.Where(i => i.Logo != null).ShouldNotBeEmpty();
+            foreach (var i in institutions) i.Url.ShouldNotBeNullOrEmpty();
+        }
+
+        [TestMethod]
+        public void FetchInstitutionsAsync_should_retrieve_a_list_of_500_banks()
+        {
+            // Arrange
+            var sut = new PlaidClient(Environment.Sandbox);
+
+            // Act
+            var request = new Institution.GetRequest()
+            {
+                Offset = 0,
+                Count = 500,
+                Options = new Institution.GetOptions { IncludeOptionalMetadata = true }
+            }.UseDefaults();
+
+            var result = sut.FetchInstitutionsAsync(request).Result;
+
+            // Assert
+            result.IsSuccessStatusCode.ShouldBeTrue();
+            result.RequestId.ShouldNotBeNullOrEmpty();
+            result.Institutions.Length.ShouldBe(500);
+            result.Institutions.Where(i => i.Logo != null).ShouldNotBeEmpty();
+            foreach (var i in result.Institutions) i.Url.ShouldNotBeNullOrEmpty();
         }
 
         [TestMethod]
