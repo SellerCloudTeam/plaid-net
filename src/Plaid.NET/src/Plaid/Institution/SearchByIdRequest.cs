@@ -26,7 +26,7 @@ namespace Acklann.Plaid.Institution
         /// Gets or sets the options.
         /// </summary>
         /// <value>The options.</value>
-        [JsonProperty("options")]
+        [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public GetOptions Options { get; set; }
     }
 }

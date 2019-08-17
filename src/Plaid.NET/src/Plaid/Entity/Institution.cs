@@ -61,7 +61,7 @@ namespace Acklann.Plaid.Entity
         /// </summary>
         /// <value>The primary color.</value>
         [JsonProperty("primary_color")]
-        public string PrimaryCode { get; set; }
+        public string PrimaryColor { get; set; }
 
         /// <summary>
         /// Gets or sets the url.
