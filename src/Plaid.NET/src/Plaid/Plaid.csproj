@@ -5,7 +5,7 @@
     <AssemblyName>Acklann.Plaid</AssemblyName>
     <RootNamespace>Acklann.Plaid</RootNamespace>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <PackageVersion>0.0.9</PackageVersion>
+    <PackageVersion>1.0.0.1</PackageVersion>
     <Authors>Ackara</Authors>
     <Company>Ackara</Company>
     <PackageTags>plaid banking rest api</PackageTags>
