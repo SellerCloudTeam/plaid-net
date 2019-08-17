@@ -150,6 +150,29 @@ namespace Acklann.Plaid.MSTest.Tests
         }
 
         [TestMethod]
+        public void FetchInstitutionByIdAsync_should_retrieve_a_bank_that_matches_a_specified_id_with_logo()
+        {
+            // Arrange
+            var sut = new PlaidClient(Environment.Sandbox);
+
+            // Act
+            var request = new Institution.SearchByIdRequest()
+            {
+                InstitutionId = "ins_109511",
+                Options = new Institution.GetOptions { IncludeOptionalMetadata = true }
+            }.UseDefaults();
+            var response = sut.FetchInstitutionByIdAsync(request).Result;
+
+            // Assert
+            response.IsSuccessStatusCode.ShouldBeTrue();
+            response.RequestId.ShouldNotBeNullOrEmpty();
+            response.Institution.Id.ShouldBe(request.InstitutionId);
+            response.Institution.Logo.ShouldNotBeNull();
+            response.Institution.Logo.ShouldNotBeEmpty();
+            response.Institution.Url.ShouldNotBeNullOrEmpty();
+        }
+
+        [TestMethod]
         public void FetchTransactionsAsync_should_retrieve_a_list_of_transactions()
         {
             // Arrange

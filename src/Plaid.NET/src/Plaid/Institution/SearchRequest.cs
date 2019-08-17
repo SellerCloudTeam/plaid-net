@@ -36,5 +36,12 @@ namespace Acklann.Plaid.Institution
         /// <value>The public key.</value>
         [JsonProperty("public_key")]
         public string PublicKey { get; set; }
+
+        /// <summary>
+        /// Gets or sets the options.
+        /// </summary>
+        /// <value>The options.</value>
+        [JsonProperty("options")]
+        public GetOptions Options { get; set; }
     }
 }
