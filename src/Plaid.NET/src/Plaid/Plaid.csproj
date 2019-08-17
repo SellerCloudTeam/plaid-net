@@ -4,8 +4,8 @@
     <TargetFramework>netstandard1.1</TargetFramework>
     <AssemblyName>Acklann.Plaid</AssemblyName>
     <RootNamespace>Acklann.Plaid</RootNamespace>
-    <AssemblyVersion>1.0.0.3</AssemblyVersion>
-    <PackageVersion>1.0.0.3</PackageVersion>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
+    <PackageVersion>1.0.0.4</PackageVersion>
     <Authors>Ackara</Authors>
     <Company>Ackara</Company>
     <PackageTags>plaid banking rest api</PackageTags>
@@ -19,7 +19,7 @@
     <PackageIconUrl>https://github.com/Ackara/Plaid.NET/raw/master/art/icon.png</PackageIconUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SellerCloud.Acklann.Plaid</PackageId>
-    <Version>1.0.0.3</Version>
+    <Version>1.0.0.4</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard2.0\Acklann.Plaid.xml</DocumentationFile>
